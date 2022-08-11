@@ -1,0 +1,8 @@
+api/node_modules
+api/.env
+api/yarn.lock
+api/yarn-error.log
+
+ui/node_modules
+ui/yarn.lock
+ui/README.md
