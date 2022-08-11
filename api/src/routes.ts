@@ -1,14 +1,15 @@
 import { Express } from "express";
-import { createSessionHandler } from "./controllers/session.controller";
+import {
+  createSessionHandler,
+  getSessionHandler,
+  logout,
+} from "./controllers/session.controller";
+import { author } from "./middleware/author";
 
 function routes(app: Express) {
-  app.use("/", (_, res) => {
-    res.status(200).json({
-      message: "bbb",
-    });
-  });
-
   app.post("/api/session", createSessionHandler);
+  app.get("/api/session", author, getSessionHandler);
+  app.delete("/api/session", author, logout);
 }
 
 export default routes;

@@ -24,13 +24,15 @@ dA4TS2kB9Kf0wn0+7wSlyikHoKhbtzwXHZl17GsyEi6wHnsqNBSauyIWhpha8i+Y
 +3GyaOY536H47qyXAgMBAAE=
 -----END PUBLIC KEY-----`;
 
-export async function signJWT(payload: object, expiresIn: string | number) {
-  return await jwt.sign(payload, privateKey, { algorithm: "RS256", expiresIn });
+// sign jwt
+export function signJWT(payload: object, expiresIn: string | number) {
+  return jwt.sign(payload, privateKey, { algorithm: "RS256", expiresIn });
 }
 
-export async function verifyJWT(token: string) {
+// verify jwt
+export function verifyJWT(token: string) {
   try {
-    const decoded = await jwt.verify(token, publicKey);
+    const decoded = jwt.verify(token, publicKey);
     return { payload: decoded, expired: false };
   } catch (error) {
     return { payload: null, expired: error.message.includes("jwt expired") };
